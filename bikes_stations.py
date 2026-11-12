@@ -33,9 +33,10 @@ class Bike:
     #рахуєм ціну оренди веліка
 #клас веліка
 class ElectroBike(Bike):
-    def __init__(self, number):
+    def __init__(self, number, charge=100):
         super().__init__(number)
         self.price = 5
+        self.charge = charge
     def __str__(self):
-        return f"Номер: {self.number}, тип: електричний"
+        return f"Номер: {self.number}, тип: електричний, заряд: {self.charge}"
 #клас електровеліка
