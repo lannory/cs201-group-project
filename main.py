@@ -1,8 +1,8 @@
 # Mykola Dietochka
-import client from "client.py"
-import bike from "bike.py"
-import Service from "take_return.py"
-import Station from "station.py"
+from bikes import Bike, ElectroBike, Station
+from client import Client
+from take_return import Service
+from finance import Finance
 
 
 def main():
@@ -10,18 +10,16 @@ def main():
     station_b = Station("Station B")
     stations = [station_a, station_b]
 
-    station_a.add(Bike(29))
-    station_a.add(Bike(27))
-    station_a.add(ElectricBike(29))
+    station_a.return_bike(Bike(1))
+    station_a.return_bike(ElectroBike(2))
+    station_a.return_bike(Bike(3))
 
-    station_b.add(Bike(26))
-    station_b.add(ElectricBike(29))
+    station_b.return_bike(ElectroBike(4))
+    station_b.return_bike(Bike(5))
 
 
     for station in stations:
-        print("Station Name:", station.name, "Bikes available:", station.count())
-
-
+        print("Station Name:", station.name, "Bikes available:", station.count_bikes())
 
 
 
@@ -36,6 +34,4 @@ def main():
     print("Curr balance:")
     for client in clients:
         print(f"{client.name}: {client.get_balance()}uah")
-
-
-
+        
