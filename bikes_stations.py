@@ -11,8 +11,17 @@ class Station:
     def take_bike(self, number):
         for bike in self.bikes:
             if bike.number == number:
+                if isinstance(bike, ElectroBike) and bike.charge < 20:
+                    break
                 self.bikes.remove(bike)
                 return bike
+        else:
+            return None
+        for bike in self.bikes:
+            if isinstance(bike, ElectroBike) and bike.charge < 20:
+                continue
+            self.bikes.remove(bike)
+            return bike
         return None
     #взяти велік
     def count_bikes(self):
@@ -35,6 +44,8 @@ class Bike:
 class ElectroBike(Bike):
     def __init__(self, number, charge=100):
         super().__init__(number)
+        if charge < 0 or charge > 100:
+            raise ValueError("Заряд має бути від 0 до 100")
         self.price = 5
         self.charge = charge
     def __str__(self):
