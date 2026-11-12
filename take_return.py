@@ -14,11 +14,12 @@ class Service():
         bike_minutes[client.name] = time.time()
         return bike
 
-    def return_bike(self, client: Client, station: Station):
+    def return_bike(self, client: Client, station: Station, finance: Finance):
         bike = client.bike_now
         if bike == None:
             return None
-        minutes = bike_minutes[client.name] - time.time()
+        time = bike_minutes[client.name] - time.time()
+        minutes = finance.invoice(client, bike, time)
         cost = bike.calculate_cost(minutes)
         if not client.withdraw(cost):
             return False
