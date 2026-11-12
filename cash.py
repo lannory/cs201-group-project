@@ -1,6 +1,6 @@
 # Danylo Yusko
 
-from datetime import datetime, time
+from datetime import time
 
 from clients import Client
 from bikes_stations import Bike
@@ -12,7 +12,8 @@ class Finance:
     def get_income(self):  # To get private total income
         return self.__total_income
     
-    def invoice(self, user : Client, bike : Bike): # To invoice user after returning bike
-        pass
-        
-            
+    def invoice(self, user : Client, bike : Bike, time : time): # To invoice user after returning bike
+        minutes = time.hour * 60 + time.minute + (1 if time.second else 0)
+        price = bike.calculate_cost(minutes)
+        user.withdraw(price)
+        self.__total_income += price
