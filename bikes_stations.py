@@ -24,10 +24,16 @@ class Station:
             print(f"Номер: {bike.number}. Ціна за хвилину: {bike.price}")
     #показує станцію та номери байків в ній і ціну за хвилину
 #це клас станції
-
 class Bike:
     def __init__(self, number):
         self.number = number
         self.price = 2
     def calculate_cost(self, minutes):
         return minutes * self.price
+    #рахуєм ціну оренди веліка
+#клас веліка
+class ElectroBike(Bike):
+    def __init__(self, number):
+        super().__init__(number)
+        self.price = 5
+#клас електровеліка
