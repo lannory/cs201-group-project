@@ -17,4 +17,3 @@ class Finance:
         price = bike.calculate_cost(minutes)
         user.withdraw(price)
         self.__total_income += price
-        return
