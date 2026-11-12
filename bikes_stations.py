@@ -18,11 +18,9 @@ class Station:
     def count_bikes(self):
         return len(self.bikes)
     #функція рахує загальну кількість веліків
-    def show_bikes(self):
-        print(f"Станція: {self.name}")
-        for bike in self.bikes:
-            print(f"Номер: {bike.number}. Ціна за хвилину: {bike.price}")
-    #показує станцію та номери байків в ній і ціну за хвилину
+    def __str__(self):
+        return f"Станція {self.name}, велосипедів: {len(self.bikes)}"
+    #показує станцію та кількість веліків в ній
 #це клас станції
 class Bike:
     def __init__(self, number):
@@ -30,10 +28,14 @@ class Bike:
         self.price = 2
     def calculate_cost(self, minutes):
         return minutes * self.price
+    def __str__(self):
+        return f"Номер: {self.number}, тип: звичайний"
     #рахуєм ціну оренди веліка
 #клас веліка
 class ElectroBike(Bike):
     def __init__(self, number):
         super().__init__(number)
         self.price = 5
+    def __str__(self):
+        return f"Номер: {self.number}, тип: електричний"
 #клас електровеліка
